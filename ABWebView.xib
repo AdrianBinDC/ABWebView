@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ABWebView" customModule="NA_Jingles_Refactor" customModuleProvider="target">
+            <connections>
+                <outlet property="pageTitleLabel" destination="pAb-El-1UP" id="qKG-mi-7mR"/>
+                <outlet property="pageTitleStackView" destination="xJN-rz-56w" id="7rJ-Jp-Nme"/>
+                <outlet property="progressView" destination="NNw-BH-MX0" id="3Ji-tL-n0a"/>
+                <outlet property="progressViewStackView" destination="hix-Nw-gDd" id="FvP-bE-4aY"/>
+                <outlet property="webView" destination="Kkq-vd-fNq" id="ONp-ey-YbP"/>
+                <outlet property="webViewStackView" destination="z1u-c7-z0K" id="RL1-O6-akJ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="602"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="OpA-uB-ZaM">
+                    <rect key="frame" x="0.0" y="28" width="375" height="566"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xJN-rz-56w">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="18"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAb-El-1UP">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hix-Nw-gDd">
+                            <rect key="frame" x="0.0" y="22" width="375" height="2"/>
+                            <subviews>
+                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NNw-BH-MX0">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
+                                </progressView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="z1u-c7-z0K">
+                            <rect key="frame" x="0.0" y="28" width="375" height="538"/>
+                            <subviews>
+                                <wkWebView contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-vd-fNq">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="538"/>
+                                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <wkWebViewConfiguration key="configuration" allowsInlineMediaPlayback="YES">
+                                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" audio="YES" video="YES"/>
+                                        <wkPreferences key="preferences"/>
+                                    </wkWebViewConfiguration>
+                                </wkWebView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="OpA-uB-ZaM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5qa-TB-cGb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OpA-uB-ZaM" secondAttribute="trailing" id="QHx-3t-xgh"/>
+                <constraint firstAttribute="bottom" secondItem="OpA-uB-ZaM" secondAttribute="bottom" constant="8" id="aHw-1m-w7U"/>
+                <constraint firstItem="OpA-uB-ZaM" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="kAm-YJ-aoM"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="51.5" y="21"/>
+        </view>
+    </objects>
+</document>
