@@ -13,3 +13,7 @@ Basic drop-in WKWevView-based UIView
         webView.url = "https://www.cnn.com"
     
 Be sure to add the appropriate entries in your `info.plist` file to allow `http` requests.
+
+## Notes
+
+Swiping left goes back, swiping right goes forward.
