@@ -1,5 +1,5 @@
 # ABWebView
-Basic drop-in WKWevView-based UIView
+Basic drop-in WKWevView-based UIView. `ABWebview` contains a small `UIProgressView` which utilizes KVO to monitor `WKWebView` to update the progress of the page load as well as the page's title.
 
 ## Usage
 1. Drag a `UIView` onto the storyboard, set the class to `ABWebView` in the Inspector.
