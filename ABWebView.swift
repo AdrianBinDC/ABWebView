@@ -47,9 +47,21 @@ import WebKit
   
   @IBInspectable var allowsBackForwardNavigationGestures: Bool = true {
     didSet {
-      updateAppearance()
+      configureGestures()
     }
   }
+  
+  /*
+   JavaScript is turned on by default in this implementation. If you want to make it IBDesignable, here's what you'd need.
+   
+   https://stackoverflow.com/a/47038285/4475605
+   */
+  
+  //  @IBInspectable var enableJavaScript: Bool = true {
+  //    didSet {
+  //      updateAppearance()
+  //    }
+  //  }
   
   // MARK: Variables
   private var view: UIView!
@@ -109,19 +121,8 @@ import WebKit
     // Customize appearance
     updateAppearance()
     
-    // add gestures
-    let swipeBack = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture(_:)))
-    swipeBack.direction = .left
-    swipeBack.delegate = self
-    self.addGestureRecognizer(swipeBack)
-    
-    let swipeForward = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture(_:)))
-    swipeForward.direction = .right
-    swipeForward.delegate = self
-    self.addGestureRecognizer(swipeForward)
+    configureGestures()
 
-    
-    
     // webview config
     webView.allowsBackForwardNavigationGestures = self.allowsBackForwardNavigationGestures
     // add KVO
@@ -132,12 +133,10 @@ import WebKit
   // MARK: Gesture Handler
   @objc func handleGesture(_ gesture: UISwipeGestureRecognizer) {
     if gesture.direction == .left {
-      print("** GO BACK **")
       webView.goBack()
     }
     
     if gesture.direction == .right {
-      print("** GO FORWARD **")
       webView.goForward()
     }
   }
@@ -169,7 +168,27 @@ import WebKit
     pageTitleLabel.backgroundColor = UIColor.clear
     self.backgroundColor = webViewBackgroundColor
     pageTitleLabel.font = UIFont.systemFont(ofSize: titleFontSize, weight: .medium)
-    webView.allowsBackForwardNavigationGestures = allowsBackForwardNavigationGestures
+  }
+  
+  fileprivate func configureGestures() {
+    if allowsBackForwardNavigationGestures == true {
+      // add gestures
+      let goBackGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture(_:)))
+      goBackGesture.direction = .left
+      goBackGesture.delegate = self
+      self.addGestureRecognizer(goBackGesture)
+      
+      let goForwardGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture(_:)))
+      goForwardGesture.direction = .right
+      goForwardGesture.delegate = self
+      self.addGestureRecognizer(goForwardGesture)
+    } else {
+      if let recognizers = self.gestureRecognizers?.filter({ $0 is UISwipeGestureRecognizer }) {
+        recognizers.forEach{ gesture in
+          self.removeGestureRecognizer(gesture)
+        }
+      }
+    }
   }
   
   // MARK: Helper Methods
@@ -194,15 +213,6 @@ import WebKit
 
 extension ABWebView: UIGestureRecognizerDelegate {
   func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-    print("**DELEGATE FIRED**")
     return true
   }
 }
-
-//extension ABWebView: WKNavigationDelegate {
-//  // TODO: fill in as needed
-//  func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-//    print("navigationAction = ", navigationAction)
-//    decisionHandler(.allow)
-//  }
-//}
